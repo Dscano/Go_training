@@ -5,6 +5,8 @@ import (
 	"strings"
 	"io/ioutil"
 	"os"
+	"math/rand"
+	"time"
 )
 
 // Create a new type of 'deck', e.i It is a slices of strings
@@ -59,4 +61,18 @@ func newDeckFromFile(filename string) deck {
 
 	ss := strings.Split(string(bs),",")
 	return deck(ss)
+}
+
+//Function to shuffle the cards 
+func (d deck)shuffle () {
+	// gerate a different int 64 number
+	source := rand.NewSource(time.Now().UnixNano()) 
+	r := rand.New(source)
+
+	for i := range d {
+		newPosition := r.Intn(len(d) - 1)
+		// swap the elements at both i and newPosition inside the slice
+		d[i], d[newPosition] = d[newPosition], d[i]  
+	}
+
 }

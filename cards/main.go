@@ -20,5 +20,9 @@ func main() {
 	n_cards := newDeckFromFile("my_cards")
 	n_cards.print()
 
+	s_cards := newDeck()
+	s_cards.shuffle()
+	s_cards.print()
+
 }
 
